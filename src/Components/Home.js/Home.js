@@ -43,17 +43,22 @@ const Home = (props) => {
                         <h3 className='quantity'>2700</h3>
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} md={6}>
                      <HomeChart2></HomeChart2>
+                     <h5 style={{textAlign:"center"}} >Yearly Status</h5>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} md={6}>
                     
+                 
                     <HomeChart3></HomeChart3>
+                     <h5 className='bottom-line'>Yearly Status</h5>
                    
+                    
                 </Grid>
                
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} md={12}>
                     <HomeChart></HomeChart>
+                    <h5 style={{textAlign:"center"}} >Yearly Status</h5>
                 </Grid>
                
             </Grid>
@@ -61,32 +66,8 @@ const Home = (props) => {
 
 
 
-    //  <Container>
-         
-    //     <div className="card-parent">
-    //         <div className="card">
-    //             <h4 className='heading'>Total Item :</h4>
-    //             <h3 className='quantity'>219</h3>
-    //         </div>
-    //         <div className="card">
-    //             <h4 className='heading'>Total Cost :</h4>
-    //             <h3 className='quantity'>100k</h3>
-    //         </div>
-    //         <div className="card">
-    //         <h4 className='heading'>Total Customer :</h4>
-    //             <h3 className='quantity'>2700</h3>
-    //         </div>
+   
 
-    //         <div className="homeChart2">
-    //             <HomeChart2></HomeChart2>
-    //        </div>
-
-    //         <div className="homeChart1">
-    //                 <HomeChart></HomeChart>
-    //         </div>
-    //     </div>
-        
-    //  </Container>
     );
 };
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,18 +9,40 @@ import {
 
 import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard';
+import Admin from './Components/Admin/Admin';
 
 
 
 
 
 function App() {
-  
+  const [user,setUser] = useState(false);
+
+  const handleUser = (status) => {
+           if(status === 'logedIn'){
+             setUser(true);
+           }
+           else if(status === "logOut"){
+             setUser(false);
+           }
+  }
   return (
     <div>
+       
+
       
-      <Dashboard></Dashboard>
+
+          
+            
+             {
+               user ?   <Dashboard handleUser={handleUser}></Dashboard> : <Admin handleUser={handleUser}></Admin>
+             } 
+          
+            
+         
+       
       
+       
     </div>
   );
 }

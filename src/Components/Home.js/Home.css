@@ -14,6 +14,7 @@ width:100%;
     border-radius:5px;
     padding-left:20px;
     padding-top:5px;
+    margin-bottom:50px;
 }
 
 .card1{
@@ -56,7 +57,9 @@ width:100%;
 }
 
 
-
+.bottom-line{
+    margin-left: 166px;
+  }
 
 
 

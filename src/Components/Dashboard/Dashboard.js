@@ -12,17 +12,23 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
+import HomeIcon from '@material-ui/icons/Home';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Home from '../Home.js/Home';
+import HomeChart from '../HomeChart/HomeChart';
+import './Dashboard.css'
+import Sell from '../Sell/Sell';
+import Rank from '../Rank/Rank';
+import Admin from '../Admin/Admin';
 
 //from branch 
 
@@ -77,22 +83,43 @@ function Dashboard(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+       
+         <Link className="link-style" to='/'>
+          <ListItem button>
+              <ListItemIcon><HomeIcon></HomeIcon></ListItemIcon>
+              <ListItemText primary={"Home"}/>
           </ListItem>
-        ))}
+         </Link>
+      
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+       
+    <Link to='/sell' className='link-style'>
+      <ListItem button>
+            <ListItemIcon><ShoppingCartIcon></ShoppingCartIcon></ListItemIcon>
+            <ListItemText primary={"Sell"}/>
+        </ListItem>
+    </Link>
+   
+   </List>
+   <List>
+   <Link to='/rank' className='link-style'>
+       <ListItem button>
+         <ListItemIcon><TrendingUpIcon></TrendingUpIcon></ListItemIcon>
+         <ListItemText primary={"Rank"}/>
+       </ListItem>
+   </Link>
+   </List>
+      <Divider />
+      <List>
+       
+       <ListItem button onClick={() => props.handleUser('logOut')}  style={{backgroundColor:"#F91944",color:"white"}} >
+         <ListItemIcon></ListItemIcon>
+         <ListItemText primary={"Logout"}/>
+       </ListItem>
+   
+   </List>
     </div>
   );
 
@@ -112,10 +139,15 @@ function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Responsive drawer
+            Admin Dashboard
           </Typography>
         </Toolbar>
       </AppBar>
+
+
+      <Router>
+
+
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
@@ -147,32 +179,42 @@ function Dashboard(props) {
           </Drawer>
         </Hidden>
       </nav>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main>
+    <Switch>
+
+
+      <Route exact path='/'>
+        <div className={classes.content}>
+          <Home >
+            <div className={classes.toolbar} />
+          </Home>
+        </div>
+      </Route>
+
+
+      <Route path='/sell'>
+        <div className={classes.content}>
+
+          <Sell> 
+            <div className={classes.toolbar} />
+          </Sell>
+
+        </div>
+      </Route>
+
+
+      <Route path='/rank'>
+        <div className={classes.content}>
+
+            <Rank>
+              <div className={classes.toolbar} />
+            </Rank>
+
+        </div>
+      </Route>
+
+     
+    </Switch>
+    </Router>
     </div>
   );
 }
